@@ -28,18 +28,18 @@ def main():
     #### YOUR CODE HERE
     im_subsample = im.copy()
     for i in range(N_levels):
-        # Apply a Gaussian filter for anti-aliasing
+        # Set up Gaussian filter for anti-aliasing
         kernel = gaussian_kernel(5, 1)
         
-        # Separate color channels
+        # Separate channels
         r, g, b = im_subsample[:, :, 0], im_subsample[:, :, 1], im_subsample[:, :, 2]
         
-        # Apply Gaussian filter and subsample each color channel
+        # Filter and subsample each channel
         r_subsample = filter2d(r, kernel)[::2, ::2]
         g_subsample = filter2d(g, kernel)[::2, ::2]
         b_subsample = filter2d(b, kernel)[::2, ::2]
         
-        # Combine color channels back into a single image
+        # Bring the channels back together to form a single image
         im_subsample = np.stack([r_subsample, g_subsample, b_subsample], axis=2)
         
         plt.subplot(2, N_levels, N_levels+i+1)
