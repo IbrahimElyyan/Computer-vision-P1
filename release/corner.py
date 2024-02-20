@@ -45,7 +45,7 @@ def harris_corners(img, window_size=3, k=0.04):
     return response
 
 def main():
-    img = imread('release\building.jpg', as_gray=True)
+    img = imread('release\\building.jpg', as_gray=True)
 
     ### YOUR CODE HERE
     
@@ -60,6 +60,21 @@ def main():
     coordinates = peak_local_max(response, min_distance=20)
     
     # Visualize results
+    plt.figure(figsize=(10, 10))
+    plt.subplot(1, 3, 1)
+    plt.imshow(response)
+    plt.title('Harris Response')
+
+    plt.subplot(1, 3, 2)
+    plt.imshow(response > thresh)
+    plt.title('Thresholded Response')
+
+    plt.subplot(1, 3, 3)
+    plt.imshow(img, cmap='gray')
+    plt.scatter(coordinates[:, 1], coordinates[:, 0], color='red', s=3)
+    plt.title('Corners that are Detected')
+
+    plt.show()
     
     ### END YOUR CODE
     
