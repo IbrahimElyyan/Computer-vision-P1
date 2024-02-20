@@ -5,7 +5,7 @@ from utils import gaussian_kernel, filter2d, partial_x, partial_y
 
 def main():
     # Load image
-    img = io.imread('iguana.png', as_gray=True)
+    img = io.imread('release\iguana.png', as_gray=True)
 
     ### YOUR CODE HERE
 
@@ -27,7 +27,7 @@ def main():
     plt.imshow(img, cmap='gray')
     plt.title('Unaltered Image')
     
-    plt.sublot(2,2,2)
+    plt.subplot(2,2,2)
     plt.imshow(x_der,cmap='gray')
     plt.title('X Gradrient')
     
