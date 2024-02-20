@@ -23,7 +23,23 @@ def main():
     # Visualize results
     plt.figure(figsize=(20,20))
     
+    plt.subplot(2,2,1)
+    plt.imshow(img, cmap='gray')
+    plt.title('Unaltered Image')
     
+    plt.sublot(2,2,2)
+    plt.imshow(x_der,cmap='gray')
+    plt.title('X Gradrient')
+    
+    plt.subplot(2,2,3)
+    plt.imshow(y_der,cmap='gray')
+    plt.title('Y Gradient')
+    
+    plt.subplot(2,2,4)
+    plt.imshow(gradient_magnitude,cmap='gray')
+    plt.title('Gradient Magnitude')
+    
+    plt.show()
     ### END YOUR CODE
     
 if __name__ == "__main__":
