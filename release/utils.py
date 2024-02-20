@@ -63,7 +63,8 @@ def filter2d(image, filter):
     for m in range(Hi):
         for n in range(Wi):
             ### YOUR CODE HERE (replace ??? with your code)
-            out[m, n] = ???
+            # here the filter is applied on the image using sum
+            out[m, n] = np.sum(image[m:m+Hk,n:n+Wk]*filter)
             ### END YOUR CODE
 
     return out
