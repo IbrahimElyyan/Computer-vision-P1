@@ -6,7 +6,7 @@ from utils import gaussian_kernel, filter2d
 def main():
     
     # load the image
-    im = imread('paint.jpg').astype('float')
+    im = imread('release\paint.jpg').astype('float')
     im = im / 255
 
     # number of levels for downsampling
