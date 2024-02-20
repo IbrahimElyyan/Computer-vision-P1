@@ -1,5 +1,5 @@
 import numpy as np
-from utils import filter2d, partial_x, partial_y
+from utils import gaussian_kernel, filter2d, partial_x, partial_y
 from skimage.feature import peak_local_max
 from skimage.io import imread
 import matplotlib.pyplot as plt
@@ -31,10 +31,9 @@ def harris_corners(img, window_size=3, k=0.04):
     xy_der = x_der*y_der
     
     # Compute sum of products
-    window = np.ones((window_size,window_size))
-    sum_xx = filter2d(xx_der, window)
-    sum_yy = filter2d(yy_der,window)
-    sum_xy = filter2d(xy_der,window)
+    sum_xx = filter2d(xx_der, gaussian_kernel(window_size))
+    sum_yy = filter2d(yy_der,gaussian_kernel(window_size))
+    sum_xy = filter2d(xy_der,gaussian_kernel(window_size))
     
     # Compute reponse using formula
     det = xx_der*yy_der - xy_der**2
@@ -51,11 +50,15 @@ def main():
     ### YOUR CODE HERE
     
     # Compute Harris corner response
-
-    # Threshold on response
-
+    response = harris_corners(img)
+    
+    # Threshold on response, I chose 0.01
+    thresh = 0.01
+    response[response<thresh] = 0
+    
     # Perform non-max suppression by finding peak local maximum
-
+    coordinates = peak_local_max(response, min_distance=20)
+    
     # Visualize results
     
     ### END YOUR CODE
