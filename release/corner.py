@@ -17,30 +17,26 @@ def harris_corners(img, window_size=3, k=0.04):
     Returns:
         response: Harris response image of shape (H, W)
     """
-
     response = None
-    
-    ### YOUR CODE HERE
+   
     # Computing the x and y derivatives
     x_der = partial_x(img)
     y_der = partial_y(img)
-    
+
     # Compute product of derivatives
     xx_der = x_der**2
     yy_der = y_der**2
-    xy_der = x_der*y_der
-    
+    xy_der = y_der*x_der
+
     # Compute sum of products
     sum_xx = filter2d(xx_der, gaussian_kernel(window_size))
-    sum_yy = filter2d(yy_der,gaussian_kernel(window_size))
-    sum_xy = filter2d(xy_der,gaussian_kernel(window_size))
-    
+    sum_yy = filter2d(yy_der, gaussian_kernel(window_size))
+    sum_xy = filter2d(xy_der, gaussian_kernel(window_size))
+
     # Compute reponse using formula
-    det = xx_der*yy_der - xy_der**2
-    trace = xx_der + yy_der
-    response = det - k(trace**2)
-    
-    ### END YOUR CODE
+    det = sum_xx * sum_yy - sum_xy**2
+    trace = sum_xx + sum_yy
+    response = det - k * trace**2
 
     return response
 
