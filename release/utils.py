@@ -85,6 +85,11 @@ def partial_x(img):
 
     # define your derivative filter to be size 3*3
     
+    # Applying the Sobel filter
+    filter_x = np.array([[-1,0,1],[-2,0,2],[-1,0,1]])
+    
+    out = filter2d(img, filter_x)
+    
     ### END YOUR CODE
 
     return out
@@ -103,6 +108,8 @@ def partial_y(img):
     ### YOUR CODE HERE
 
     # define your derivative filter to be size 3*3
+    
+    filter_y = np.array([[],[],[]])
     
     ### END YOUR CODE
 
